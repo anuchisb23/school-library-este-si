@@ -15,7 +15,7 @@
     <groupId>com.libraryproject</groupId>
     <artifactId>School-library</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>School-library</name>
     <description>School library project for Spring Boot</description>
 
