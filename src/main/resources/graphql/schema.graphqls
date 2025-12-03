@@ -1,0 +1,103 @@
+# Author Type & Input
+type Author {
+    id: ID!
+    firstName: String
+    lastName: String
+}
+
+input AuthorInput {
+    firstName: String!
+    lastName: String!
+}
+
+# Book Type & Input
+type Book {
+    id: ID!
+    title: String
+    isbn: String
+    year: Int
+    pages: Int
+    language: String
+    publisherId: ID
+    categoryId: ID
+    authorIds: [ID]
+}
+
+input BookInput {
+    title: String!
+    isbn: String!
+    year: Int!
+    pages: Int!
+    language: String!
+    publisherId: ID!
+    categoryId: ID!
+    authorIds: [ID!]!
+}
+
+type BookPage {
+    content: [Book]
+    totalElements: Int  # Usa Int, o crea scalar Long si necesitas más precisión
+    totalPages: Int
+    page: Int
+    size: Int
+}
+# Category Type & Input
+
+type Category {
+    id: ID!
+    name: String!
+}
+
+input CategoryInput {
+    name: String!
+}
+# Publisher Type & Input
+type Publisher {
+    id: ID!
+    name: String!
+}
+
+input PublisherInput {
+    name: String!
+}
+# Queries
+type Query {
+    # Authors
+    getAllAuthors: [Author]
+    getAuthorById(id: ID!): Author
+
+    # Books
+    getAllBooks: [Book]
+    getAllBooksPaginated(page: Int!, size: Int!): BookPage
+    getBookById(id: ID!): Book
+
+    # Categories
+    getAllCategories: [Category]
+    getCategoryById(id: ID!): Category
+
+    # Publishers
+    getAllPublishers: [Publisher]
+    getPublisherById(id: ID!): Publisher
+}
+# Mutations
+type Mutation {
+    # Authors
+    createAuthor(author: AuthorInput!): Author
+    updateAuthor(id: ID!, author: AuthorInput!): Author
+    deleteAuthor(id: ID!): Boolean
+
+    # Books
+    createBook(book: BookInput!): Book
+    updateBook(id: ID!, book: BookInput!): Book
+    deleteBook(id: ID!): Boolean
+
+    # Categories
+    createCategory(category: CategoryInput!): Category
+    updateCategory(id: ID!, category: CategoryInput!): Category
+    deleteCategory(id: ID!): Boolean
+
+    # Publishers
+    createPublisher(publisher: PublisherInput!): Publisher
+    updatePublisher(id: ID!, publisher: PublisherInput!): Publisher
+    deletePublisher(id: ID!): Boolean
+}
